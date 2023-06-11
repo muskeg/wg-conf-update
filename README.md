@@ -1,0 +1,1 @@
+# WireGuard DynamicDNS Config Auto-update
