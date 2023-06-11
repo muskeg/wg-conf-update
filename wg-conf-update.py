@@ -26,8 +26,6 @@ print(args.domain)
 # resolve endpoint DynamicDNS IP address
 dynamicdns = args.domain
 dynamicdns_ip = socket.gethostbyname(dynamicdns)
-print(dynamicdns_ip)
-
 
 # read configuration file
 config_file_name = args.filename
@@ -39,11 +37,10 @@ config.read(config_file_name)
 endpoint = config.get("Peer", "Endpoint").split(":")
 endpoint_ip = endpoint[0]
 endpoint_port = endpoint[1]
-print(endpoint[0])
 
 # Check if address needs to be updated
 if dynamicdns_ip != endpoint_ip:
-    print("let's change")
+    print("Endpoint changed, updating config and restarting service")
     os.popen("sudo systemctl stop wg-quick@" + args.interface + ".service").read()
     config.set("Peer", "Endpoint", dynamicdns_ip + ":" + endpoint_port)
     config_file = open(config_file_name, "w")
@@ -51,5 +48,3 @@ if dynamicdns_ip != endpoint_ip:
     config_file.close()
     os.popen("sudo systemctl start wg-quick@" + args.interface + ".service").read()
                
-else:
-    print("nothing to do")
