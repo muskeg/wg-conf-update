@@ -21,7 +21,6 @@ parser.add_argument('-f', '--filename', required=True, help='Configuration file 
 parser.add_argument('-d', '--domain', required=True, help='DynDNS/Domain name to resolve')
 parser.add_argument('-i', '--interface', required=True, help='The name of the interface/service to update')
 args = parser.parse_args()
-print(args.domain)
 
 # resolve endpoint DynamicDNS IP address
 dynamicdns = args.domain
@@ -47,4 +46,3 @@ if dynamicdns_ip != endpoint_ip:
     config.write(config_file)
     config_file.close()
     os.popen("sudo systemctl start wg-quick@" + args.interface + ".service").read()
-               
