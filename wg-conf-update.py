@@ -4,7 +4,7 @@
 #  WireGuard Configuration Updated
 #  
 #  This script updates a WireGuard interface's configuration with
-#  when the endpoint's IP address changes (a useful feature for homelab
+#  when the endpoint's IP address changes (a useful feature for homelabs
 #  that do not have fixed addresses).
 #
 #**************************************************************************
